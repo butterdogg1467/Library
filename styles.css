@@ -1,0 +1,66 @@
+* {
+    font-family: Tahoma, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+body > h1 {
+    align-self: center;
+}
+
+.book {
+    background-color: #800020;
+    color: goldenrod;
+    width: 200px;
+    height: 400px;
+    padding: 50px;
+    border: goldenrod 5px double;
+}
+
+.bookwrapper {
+    background-color: #800020;
+    width: 330px;
+    height: 530px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book > h2 {
+    margin-bottom: 75px;
+}
+
+.book > button {
+    appearance: none;
+    background-color: goldenrod;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    margin-top: 50px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.addbook {
+    appearance: none;
+    width: 100px;
+    align-self: center;
+    border-radius: 15px;
+    border: none;
+    padding: 10px 25px;
+}
+
+.formbody {
+    width: 500px;
+    height: 500px;
+    background-color: whitesmoke;
+    position: absolute;
+    box-shadow: 1px 2px 40px rgba(1, 1, 1, 0.3);
+    left: 32.5%;
+    top: 20%;
+}
