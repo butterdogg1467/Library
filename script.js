@@ -9,6 +9,8 @@ let myLibrary = []
 let addBook = document.querySelector('.addbook')
 let addBookForm = document.querySelector('.addbookform')
 let formBodyCreated;
+let bookCount;
+let bookList = document.querySelector('.booklist')
 
 
 let bookTitle = document.createElement('input')
@@ -32,11 +34,14 @@ function Book(title, author, pages) {
     this.title = title,
     this.author = author,
     this.pages = pages
+    myLibrary.push(this)
+    this.toString = function() {
+        return this.title
+    }
 }
 
 createBookBtn.addEventListener('click', function() {
     let book = new Book(bookTitle.value, bookAuthor.value, bookPages.value)
-
     let bookWrap = document.createElement('div')
     bookWrap.classList.add('bookwrapper')
     myBooks.appendChild(bookWrap)
@@ -47,12 +52,27 @@ createBookBtn.addEventListener('click', function() {
     bookInfoTitle.textContent = `${book.title}`
     bookInfoAuthor.textContent = `${book.author}`
     bookInfoPages.textContent = `${book.pages} Pages`
+    let removeThisBook = document.createElement('button')
 
+    removeThisBook.addEventListener('click', function() {
+    bookBody.textContent = ''
+    bookBody.classList.remove('book')
+    bookWrap.classList.remove('bookwrapper')
+    let index = myLibrary.indexOf(this)
+
+    if (index !== -1) {
+        myLibrary.splice(index, 1)
+    }
+    })
+
+    bookList.textContent = myLibrary
+    bookBody.appendChild(removeThisBook)
     bookBody.appendChild(bookInfoTitle)
     bookBody.appendChild(bookInfoAuthor)
     bookBody.appendChild(bookInfoPages)
     bookWrap.appendChild(bookBody)
     bookBody.classList.add('book')
+
 })
 
 formBodyCreated = false;
@@ -63,6 +83,18 @@ addBook.addEventListener('click', function(){
     formBody.classList.add('formbody')
     myBooks.appendChild(formBody)
     formBodyCreated = true;
+
+    let closeButton = document.createElement('button')
+    closeButton.textContent = '❌'
+    formBody.appendChild(closeButton)
+
+    if (formBodyCreated === true) {
+    closeButton.addEventListener('click', function(){
+        myBooks.removeChild(formBody)
+        formBodyCreated = false 
+    })
+}
+
     formBody.appendChild(bookTitle)
     formBody.appendChild(bookAuthor)
     formBody.appendChild(bookPages)
