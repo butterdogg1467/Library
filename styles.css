@@ -80,4 +80,23 @@ button {
     width: 70%;
     height: 30px;
     margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input[type='checkbox'] {
+    margin-top: 20px;
+}
+
+p {
+    font-size: 15px;
+    margin-top: 15px;
+    margin-bottom: -10px;
+}
+
+.closebutton {
+    appearance: none;
+    background-color: whitesmoke;
+    width: 10px;
+    align-self: end;
+    margin-top: -20px;
 }

@@ -11,6 +11,8 @@ let addBookForm = document.querySelector('.addbookform')
 let formBodyCreated;
 let bookCount;
 let bookList = document.querySelector('.booklist')
+let bookRead = document.createElement('div');
+bookRead.value = false
 
 
 let bookTitle = document.createElement('input')
@@ -72,6 +74,24 @@ createBookBtn.addEventListener('click', function() {
     let readUnread = document.createElement('button')
     removeThisBook.textContent = 'Remove'
 
+    if (bookRead.value === false) {
+        readUnread.textContent = 'Not Read'
+        readUnread.style.backgroundColor = 'darkred'
+    } else if (bookRead.value === true) {
+        readUnread.textContent = 'Read'
+        readUnread.style.backgroundColor = 'green'
+    }
+
+    readUnread.addEventListener('click', function() {
+        if (readUnread.textContent === 'Not Read') {
+            readUnread.textContent = 'Read'
+            readUnread.style.backgroundColor = 'green'
+        } else {
+            readUnread.textContent = 'Not Read'
+            readUnread.style.backgroundColor = 'darkred'
+        }
+    })
+
     removeThisBook.addEventListener('click', function() {
     bookBody.textContent = ''
     bookBody.classList.remove('book')
@@ -84,6 +104,7 @@ createBookBtn.addEventListener('click', function() {
     })
 
     bookList.textContent = myLibrary
+    bookBody.appendChild(readUnread)
     bookBody.appendChild(removeThisBook)
     bookBody.appendChild(bookInfoTitle)
     bookBody.appendChild(bookInfoAuthor)
@@ -104,7 +125,21 @@ addBook.addEventListener('click', function(){
 
     let closeButton = document.createElement('button')
     closeButton.textContent = '❌'
+    closeButton.classList.add('closebutton')
     formBody.appendChild(closeButton)
+
+    let readUnreadCheckbox = document.createElement('input')
+    readUnreadCheckbox.setAttribute('type', 'checkbox')
+    let checkboxLabel = document.createElement('p')
+    checkboxLabel.textContent  = 'I have read this book'
+
+    readUnreadCheckbox.addEventListener('input', function(){
+        if (bookRead.value === false) {
+            bookRead.value = true
+        } else if (bookRead.value === true) {
+            bookRead.value = false
+        }
+    })
 
     if (formBodyCreated === true) {
     closeButton.addEventListener('click', function(){
@@ -112,11 +147,12 @@ addBook.addEventListener('click', function(){
         formBodyCreated = false 
     })
 }
-
     formBody.appendChild(bookTitle)
     formBody.appendChild(bookAuthor)
     formBody.appendChild(bookPages)
     formBody.appendChild(createBookBtn)
+    formBody.appendChild(checkboxLabel)
+    formBody.appendChild(readUnreadCheckbox)
     } 
 })
 
