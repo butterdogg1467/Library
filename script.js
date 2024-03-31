@@ -38,6 +38,22 @@ function Book(title, author, pages) {
     this.toString = function() {
         return this.title
     }
+
+    this.bookRemove = function () {
+    aBook.textContent = ''
+    aBook.classList.remove('book')
+    bookWrapper.classList.remove('bookwrapper')
+    }
+
+    this.readOrUnread = function() {
+        if (readUnread.textContent === 'Not Read') {
+            readUnread.textContent = 'Read'
+            readUnread.style.backgroundColor = 'green'
+        } else {
+            readUnread.textContent = 'Not Read'
+            readUnread.style.backgroundColor = 'darkred'
+        }
+    }
 }
 
 createBookBtn.addEventListener('click', function() {
@@ -53,6 +69,8 @@ createBookBtn.addEventListener('click', function() {
     bookInfoAuthor.textContent = `${book.author}`
     bookInfoPages.textContent = `${book.pages} Pages`
     let removeThisBook = document.createElement('button')
+    let readUnread = document.createElement('button')
+    removeThisBook.textContent = 'Remove'
 
     removeThisBook.addEventListener('click', function() {
     bookBody.textContent = ''
