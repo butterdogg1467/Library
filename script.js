@@ -36,27 +36,30 @@ function Book(title, author, pages) {
     this.title = title,
     this.author = author,
     this.pages = pages
+    this.info = `${this.title} by ${this.author} is ${this,pages} pages long`
     myLibrary.push(this)
     this.toString = function() {
-        return this.title
+        return this.info 
     }
 
-    this.bookRemove = function () {
-    aBook.textContent = ''
-    aBook.classList.remove('book')
-    bookWrapper.classList.remove('bookwrapper')
-    }
+}
 
-    this.readOrUnread = function() {
-        if (readUnread.textContent === 'Not Read') {
-            readUnread.textContent = 'Read'
-            readUnread.style.backgroundColor = 'green'
-        } else {
-            readUnread.textContent = 'Not Read'
-            readUnread.style.backgroundColor = 'darkred'
-        }
+Book.prototype.readOrUnread = function() {
+    if (readUnread.textContent === 'Not Read') {
+        readUnread.textContent = 'Read'
+        readUnread.style.backgroundColor = 'green'
+    } else {
+        readUnread.textContent = 'Not Read'
+        readUnread.style.backgroundColor = 'darkred'
     }
 }
+
+
+Book.prototype.bookRemove = function () {
+    this.textContent = ''
+    this.classList.remove('book')
+    bookWrapper.classList.remove('bookwrapper')
+    }
 
 createBookBtn.addEventListener('click', function() {
     let book = new Book(bookTitle.value, bookAuthor.value, bookPages.value)
@@ -92,26 +95,22 @@ createBookBtn.addEventListener('click', function() {
         }
     })
 
+    readUnread.style.marginLeft = '5px'
+
     removeThisBook.addEventListener('click', function() {
     bookBody.textContent = ''
     bookBody.classList.remove('book')
     bookWrap.classList.remove('bookwrapper')
-    let index = myLibrary.indexOf(this)
-
-    if (index !== -1) {
-        myLibrary.splice(index, 1)
-    }
     })
 
     bookList.textContent = myLibrary
-    bookBody.appendChild(readUnread)
-    bookBody.appendChild(removeThisBook)
     bookBody.appendChild(bookInfoTitle)
     bookBody.appendChild(bookInfoAuthor)
     bookBody.appendChild(bookInfoPages)
     bookWrap.appendChild(bookBody)
     bookBody.classList.add('book')
-
+    bookBody.appendChild(removeThisBook)
+    bookBody.appendChild(readUnread)
 })
 
 formBodyCreated = false;

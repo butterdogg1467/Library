@@ -11,6 +11,10 @@ body > h1 {
     align-self: center;
 }
 
+body > h2 {
+    margin-left: 10px;
+}
+
 .books {
     display: flex;
 }
