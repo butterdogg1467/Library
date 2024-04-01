@@ -10,7 +10,6 @@ let addBook = document.querySelector('.addbook')
 let addBookForm = document.querySelector('.addbookform')
 let formBodyCreated;
 let bookCount;
-let bookList = document.querySelector('.booklist')
 let bookRead = document.createElement('div');
 bookRead.value = false
 
@@ -37,10 +36,6 @@ function Book(title, author, pages) {
     this.author = author,
     this.pages = pages
     this.info = `${this.title} by ${this.author} is ${this,pages} pages long`
-    myLibrary.push(this)
-    this.toString = function() {
-        return this.info 
-    }
 
 }
 
@@ -103,7 +98,6 @@ createBookBtn.addEventListener('click', function() {
     bookWrap.classList.remove('bookwrapper')
     })
 
-    bookList.textContent = myLibrary
     bookBody.appendChild(bookInfoTitle)
     bookBody.appendChild(bookInfoAuthor)
     bookBody.appendChild(bookInfoPages)
